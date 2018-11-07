@@ -1,1 +1,7 @@
-
+1. 字典如何进行快速排序：
+   a = {"cats":1,"dogs":0}
+   如果想要获得b = ["dogs","cats"]，即根据标签的大小顺序获得key的列表，方法如下：
+   b=[m[0] for m in sorted(a.items(),key=lambda x:x[1])]
+   这里面的key选择的是x的第二项作为参考
+   
+   
