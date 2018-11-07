@@ -4,4 +4,9 @@
    b=[m[0] for m in sorted(a.items(),key=lambda x:x[1])]
    这里面的key选择的是x的第二项作为参考
    
+2.ImageDataGenerator在flow或者flow_from_directory之后，可以调用class_indices来查看对应的文件名和标签的字典：
+  例如：
+  a = ImageGenerator()
+  b = a.flow_from_directory()
+  b.class_indices 不带括号，获取的是一个字典{“cats":1,"dogs":0}
    
