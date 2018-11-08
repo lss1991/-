@@ -9,7 +9,12 @@
   a = ImageGenerator()
   b = a.flow_from_directory()
   b.class_indices 不带括号，获取的是一个字典{“cats":1,"dogs":0}
-  
+  b.samples返回有多少个样本
+  在循环里面用：
+  for i in range(b.samples):
+      x,y=b.next()
+   这样可以每次返回一个生成器增强后的图片以及标签
+   
 3. keras的model函数，model.summary()函数，可以打印出模型信息
    model.get_weights()返回模型权重列表，类型是ndarray
 
