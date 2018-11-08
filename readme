@@ -29,6 +29,16 @@
    如果拼接的两个层都是已经打平了的，即是一维的，则直接在长度上拼接，例如512+256拼接之后变成一条长度为768的特征
    如果拼接两个卷积层，例如经过原图大小64*64*3，输入时一个batch_size为32，经过一个3*3通道为512的conv1提取的特征是e是64*64*512，经过一个5*5通道为256的conv2提取的
    特征为f是64*64*256，注意是在通道的那个维度上进行拼接，即axis=-1,最后的shape为32（batch)*64*64(高宽）*768(通道数，也是特征图的个数)
+  
+6. numpy array格式的数据如何保存成图片：
+   a. 方法1 from PIL import Image
+      img=Image.fromarray(array)
+      img.save("a.jpg")
+   b. import scipy.misc
+      scipy.misc.imsave("a.jpg",array)
+   c. import matplotlib
+      matplotlib.image.imsave("a.jpg",array)
+      
    
    
  
