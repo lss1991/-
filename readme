@@ -1,3 +1,4 @@
+
 1. 字典如何进行快速排序：
    a = {"cats":1,"dogs":0}
    如果想要获得b = ["dogs","cats"]，即根据标签的大小顺序获得key的列表，方法如下：
@@ -9,4 +10,8 @@
   a = ImageGenerator()
   b = a.flow_from_directory()
   b.class_indices 不带括号，获取的是一个字典{“cats":1,"dogs":0}
+  
+3. keras的model函数，model.summary()函数，可以打印出模型信息
+   model.get_weights()返回模型权重列表，类型是ndarray
+ 
    
