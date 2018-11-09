@@ -38,6 +38,15 @@
       scipy.misc.imsave("a.jpg",array)
    c. import matplotlib
       matplotlib.image.imsave("a.jpg",array)
+ 
+ 7. python有这种比较简单的句法：
+      return 10 if x>10 else -10
+  
+ 8. enumerate()函数：
+      a=[1,2,3] b=[4,5,6,7]
+      for inx,val in enumerate([a,b]):
+         print(inx,val)
+      这里是会针对a,b构成的这个列表进行访问，依次返回的是0,[1,2,3]和1,[4,5,6]
       
    
    
