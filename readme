@@ -1,3 +1,4 @@
+
 1. 字典如何进行快速排序：
    a = {"cats":1,"dogs":0}
    如果想要获得b = ["dogs","cats"]，即根据标签的大小顺序获得key的列表，方法如下：
@@ -27,8 +28,9 @@
    另外没有用到concatenate()函数，但是也是共享层模型的例子：同一个输入多个输出的模型，用来做两个类型的分类等。
    
    如果拼接的两个层都是已经打平了的，即是一维的，则直接在长度上拼接，例如512+256拼接之后变成一条长度为768的特征
-   如果拼接两个卷积层，例如经过原图大小64*64*3，输入时一个batch_size为32，经过一个3*3通道为512的conv1提取的特征是e是64*64*512，经过一个5*5通道为256的conv2提取的
-   特征为f是64*64*256，注意是在通道的那个维度上进行拼接，即axis=-1,最后的shape为32（batch)*64*64(高宽）*768(通道数，也是特征图的个数)
+   如果拼接两个卷积层，例如经过原图大小64*64*3，输入时一个batch_size为32，经过一个3*3通道为512的conv1提取的特征是e是64*64*512，经过一个5*5通道
+   为256的conv2提取的特征为f是64*64*256，注意是在通道的那个维度上进行拼接，即axis=-1,最后的shape为32（batch)*64*64(高宽）*768(通道数，
+   也是特征图的个数)
   
 6. numpy array格式的数据如何保存成图片：
    a. 方法1 from PIL import Image
@@ -47,6 +49,23 @@
       for inx,val in enumerate([a,b]):
          print(inx,val)
       这里是会针对a,b构成的这个列表进行访问，依次返回的是0,[1,2,3]和1,[4,5,6]
+   
+ 9. 眼科多分类的工程：multi_multi_task_eyes.py文件，这个是六个分类一起做的包括白内障，角膜炎，视网膜，青光眼，正常前眼，正常后眼这六个类
+    代码梳理：
+    a. 关于data和model，都分别封装了类，这样函数逻辑要清晰一些；
+    b. 在利用ImageDataGenerator()函数的时候，除了常用的旋转，缩放，scale，镜像等，
+    还加了一个keras.applications.utils import preprocess_input这个函数，传参是：
+      ImageDataGenerator(preprocessing_function=self.image_pre)
+      其中：
+      self.image_pre(img):
+         a = np.expand_dims(img)
+         a = preprocess_input(a)
+         return a[0]
+    c. 尝试使用的basenet有inceptionv3,vgg19,densenet169,resnet50这四种，且设置trianable = false的时候，传得是一个比例，即basenet的前80%
+       的权重不需要再训练
+    d. 做multi_task的方式有两种，一种是6个dense(1)做拼接之后作为整个模型的output，另外一种方法是6个dense(256)之后拼接，拼接完之后再加上
+       top层dense(6)作为输出。
+    e. 可以多次调用训练的函数，不过每次传入的学习率，epochs这些不一样，用于做不同的尝试。
       
    
    
