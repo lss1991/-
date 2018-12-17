@@ -49,7 +49,10 @@
       a=[1,2,3] b=[4,5,6,7]
       for inx,val in enumerate([a,b]):
          print(inx,val)
-      这里是会针对a,b构成的这个列表进行访问，依次返回的是0,[1,2,3]和1,[4,5,6]
+
+
+
+这里是会针对a,b构成的这个列表进行访问，依次返回的是0,[1,2,3]和1,[4,5,6]
    
  9. 眼科多分类的工程：multi_multi_task_eyes.py文件，这个是六个分类一起做的包括白内障，角膜炎，视网膜，青光眼，正常前眼，正常后眼这六个类
     代码梳理：
@@ -99,3 +102,25 @@
    
 17. pycharm激活方式比较好的网址
 https://blog.csdn.net/yanjiangdi/article/details/80508981
+
+18. git 用法基础：
+    从远程拉取分支到本地（本地没有改分支，已经创建好了远程和本地的关联）：
+    第一种方法是：git checkout -b 本地分支名x origin/远程分支名x
+    这种方式会在本地创建分支x,并且切换到该本地分支x,采用这种方式，本地分支和远程分支会自动创建了映射关系
+    方法二：
+    git fetch origin 远程分支名x:本地分支名x
+    这种方式在本地创建了分支，但是需要手动切换到该分支下，并且这种方式不会将远程分支和本地该分支之间建立映射，pull时还需要指明
+    例如还要指明：git pull gitlab x:x
+    如何创建本地分支和远程分支至今的映射关系：
+    在当前x分支下，输入命令：
+    git branch --set-upstream-to origin/x(远程分支名)就可以了
+    
+    如何删除本地分支
+    git branch -d x
+    
+    如何拉去分支：
+    git fetch origin x
+    git pull origi x
+    
+    
+    
